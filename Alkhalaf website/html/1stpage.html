@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alkhalaf</title>
+    <style>
+        body {
+            background-color: #ebf5eb; /* Light green shade */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .permanent-padding {
+            background-color: #bde6c0;
+            height: 20px; /* Adjust the height as needed */
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1001; /* Higher z-index */
+        }
+        .grey-padding {
+            background-color: #bde6c0;
+            padding: 3px;
+            width: 100%;
+            height: 60px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 10px; /* Below permanent padding */
+            display: none;
+            animation: rollIn 0.3s ease-out forwards;
+            z-index: 1005; /* Higher z-index */
+        }
+        .home-link {
+            position: absolute;
+            right: 30px;
+            top: 10px;
+        }
+        .phone-number {
+            position: absolute;
+            left: 8px;
+            top: -10px;
+            color: #322a47; /* Dark purple */
+            font-family: 'Arial', sans-serif;
+            font-size: 0.6em; /* Smaller font */
+        }
+        .green-square {
+            background-color: #82ec82;
+            width: 320px;
+            height: 150px;
+            border-radius: 50px;
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s, height 0.3s, opacity 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Dark shading */
+            z-index: 1000; /* Lower z-index */
+        }
+        .content {
+            margin-top: 220px;
+            height: 1000px;
+        }
+        .green-square img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+        }
+        .products {
+            position: absolute;
+            left: 10px;
+            top: 23px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .products div {
+            width: 25px;
+            height: 3px;
+            background-color: rgb(0, 0, 0);
+            margin: 4px 0;
+        }
+        /* Container for CSS-drawn icons */
+        /* Container for CSS-drawn icons */
+.icon-container {
+    position: absolute;
+    top: 15px; /* Align with hamburger menu */
+    left: 50px; /* Right of hamburger menu */
+    display: flex;
+    gap: 15px; /* Space between icons */
+    z-index: 1006; /* Above other elements */
+}
+
+/* Reimproved CSS-drawn cart icon as a link */
+.cart-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: block; /* Ensure the <a> tag behaves as a block */
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Zoom effect */
+    overflow: visible; /* Ensure no clipping */
+    text-decoration: none; /* Remove underline */
+}
+.cart-icon:hover {
+    transform: scale(1.1); /* Zoom on hover */
+}
+.cart-icon::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 4px;
+    width: 22px;
+    height: 12px;
+    border: 2px solid #322a47; /* Dark purple */
+    border-bottom: none;
+    border-radius: 4px 4px 0 0; /* Rounded top */
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); /* Tapered basket */
+}
+.cart-icon::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 16.2px;
+    width: 12px;
+    height: 15px;
+    border: 2px solid #322a47;
+    border-left: none;
+    border-bottom: none;
+    border-radius: 0 2px 0 0; /* Smoother curve */
+    transform: rotate(1deg); /* Handle angle */
+}
+.cart-icon .basket-line1 {
+    position: absolute;
+    top: 12px; /* Closer to wheels, no overlap */
+    left: 7px;
+    width: 18px;
+    height: 1px;
+    background-color: #322a47; /* Upper depth line */
+}
+.cart-icon .basket-line2 {
+    position: absolute;
+    top: 16px; /* Closer to wheels, no overlap */
+    left: 7px;
+    width: 18px;
+    height: 1px;
+    background-color: #322a47; /* Lower depth line */
+}
+.cart-icon .wheel1 {
+    position: absolute;
+    top: 20px; /* Adjusted to fit within 30px height */
+    left: 7px;
+    width: 5px;
+    height: 5px;
+    background-color: #322a47;
+    border-radius: 50%;
+}
+.cart-icon .wheel2 {
+    position: absolute;
+    top: 20px; /* Adjusted to fit within 30px height */
+    left: 20px;
+    width: 5px;
+    height: 5px;
+    background-color: #322a47;
+    border-radius: 50%;
+}
+
+/* Reimproved CSS-drawn user icon as a link */
+.user-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: block; /* Ensure the <a> tag behaves as a block */
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Zoom effect */
+    overflow: visible; /* Ensure no clipping */
+    text-decoration: none; /* Remove underline */
+}
+.user-icon:hover {
+    transform: scale(1.1); /* Zoom on hover */
+}
+.user-icon::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 12px;
+    height: 12px;
+    background-color: #322a47; /* Dark purple */
+    border-radius: 50%; /* Head */
+    box-shadow: 0 0 0 1px #322a47 inset; /* Subtle outline */
+}
+.user-icon::after {
+    content: '';
+    position: absolute;
+    top: 12px; /* Attached to bottom of head */
+    left: 8px;
+    width: 14px;
+    height: 14px; /* Fits within remaining height */
+    background-color: #322a47;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle body */
+}
+.user-icon .arm-left {
+    position: absolute;
+    top: 16px; /* Aligned with top of triangle */
+    left: 4px;
+    width: 8px;
+    height: 2px;
+    background-color: #322a47;
+    border-radius: 1px 0 0 1px; /* Elbow curve */
+    transform: rotate(-25deg) translateY(-1px); /* Slight bend */
+}
+.user-icon .arm-right {
+    position: absolute;
+    top: 16px; /* Aligned with top of triangle */
+    left: 18px;
+    width: 8px;
+    height: 2px;
+    background-color: #322a47;
+    border-radius: 0 1px 1px 0; /* Elbow curve */
+    transform: rotate(25deg) translateY(-1px); /* Slight bend */
+}
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 65px;
+            left: 0;
+            width: 25%;
+            height: 180px;
+            background-color: rgba(255, 255, 255, 0);
+            z-index: 1005; /* Higher z-index */
+            justify-content: flex-start;
+            align-items: center;
+            color: rgb(2, 2, 2);
+            flex-direction: column;
+        }
+        .overlay ul {
+            list-style-type: decimal;
+            margin: 0;
+            padding: 10px;
+            width: 100%;
+            height: 180px;
+            overflow-y: scroll;
+            text-align: center;
+            scrollbar-width: none;
+        }
+        .overlay ul::-webkit-scrollbar {
+            display: none;
+        }
+        .overlay ul li {
+            background-color: rgba(33, 177, 57, 0.5);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 20px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9em; /* Smaller font */
+            color: darkpurple; /* Dark purple */
+        }
+        .overlay ul li a {
+            color: inherit; /* Match text color */
+            text-decoration: none; /* No underline */
+        }
+        .rectangular-image#ad1 {
+            width: 600px;
+            height: 300px;
+            display: block;
+            margin: 250px auto 40px; /* Distance from green square */
+            top: 200px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Dark shading */
+            z-index: 1005; /* Higher z-index */
+        }
+        .vertical-image {
+            width: 300px;
+            height: 450px;
+            display: block;
+            margin: 20px auto 40px;
+            position: relative;
+            top: 10px; /* Distance from top */
+            left: -200px; /* Position to the left */
+            box-shadow: 0px 4px 10px rgba(141, 219, 141, 0.5); /* Dark shading */
+            z-index: 1000; /* Higher z-index */
+        }
+        .vertical-image-next {
+            width: 380px;
+            height: 260px;
+            display: block;
+            margin: 20px auto 40px;
+            position: relative;
+            top: -450px; /* Distance from top */
+            right: -180px; /* Position to the right */
+            box-shadow: 0px 4px 10px rgba(141, 219, 141, 0.5); /* Dark shading */
+            z-index: 1000; /* Higher z-index */
+        }
+        .top-image {
+            max-height: 60px; /* Adjust height */
+            display: block;
+            margin: 0 auto;
+        }
+        .square-image {
+            width: 350px; /* Square size */
+            height: 350px; /* Square size */
+            display: block;
+            margin: 10px auto 40px; /* Center image */
+            position: relative;
+            right: -175px;
+            top: -440px;
+            z-index: 1000; /* Higher z-index */
+        }
+        @keyframes rollIn {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes rollOut {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            background-color: rgba(0, 128, 0, 0.5); /* Semi-transparent green */
+            animation: swim 10s infinite ease-in-out; /* Slower motion */
+            z-index: 998; /* Below images */
+            mix-blend-mode: multiply;
+        }
+        @keyframes swim {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+                transform: translateX(calc(100vw - 100%)) translateY(calc(80vh - 80%));
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        .shop-text {
+            position: absolute;
+            top: 1400px; /* Distance from top */
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: black;
+            font-size: 3em; /* Font size */
+            z-index: 1000; /* Higher z-index */
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            position: absolute;
+            top: 1500px; /* Distance from top */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* Higher z-index */
+        }
+        .image-row {
+            display: flex;
+            gap: 50px;
+        }
+        .image-container img {
+            width: 200px; /* Image size */
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+        }
+        .zoom-effect {
+            transition: transform 0.3s ease;
+        }
+        .zoom-effect:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="permanent-padding"></div>
+    <div class="grey-padding" id="greyPadding">
+        <img src="ملصق سناب.png" alt="Snap Image" class="top-image zoom-effect">
+        <div class="products" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="icon-container">
+            <a href="cart.html" class="cart-icon">
+                <span class="basket-line1"></span>
+                <span class="basket-line2"></span>
+                <span class="wheel1"></span>
+                <span class="wheel2"></span>
+            </a>
+            <a href="user.html" class="user-icon">
+                <span class="arm-left"></span>
+                <span class="arm-right"></span>
+            </a>
+        </div>
+        <p class="phone-number"><a href="tel:+0553824666">+0553824666</a></p>
+        <p><a href="index.html" class="home-link">← العودة إلى الصفحة الرئيسية</a></p>
+    </div>
+    <div class="overlay" id="menuOverlay">
+        <ul>
+            <li><a href="index.html">فواكة</a></li>
+            <li><a href="index.html">خضار</a></li>
+            <li><a href="index.html">تمور</a></li>
+            <li><a href="index.html">ورقيات</a></li>
+            <li><a href="index.html">موسميات</a></li>
+            <li><a href="index.html">عروض</a></li>
+            <li><a href="index.html">الكل</a></li>
+        </ul>
+    </div>
+    <div class="green-square" id="greenSquare">
+        <img src="ملصق سناب.png" alt="Snap Image">
+    </div>
+    <a href="index.html"><img src="frugif4.gif" alt="Frugif Image" class="rectangular-image zoom-effect" id="ad1"></a>
+    <a href="index.html"><img src="2vert.jpg" alt="2Vert Image" class="vertical-image zoom-effect"></a>
+    <a href="index.html"><img src="3vert.jpg" alt="3Vert Image" class="vertical-image-next zoom-effect"></a>
+    <a href="index.html"><img src="square.jpg" alt="Square Image" class="square-image zoom-effect"></a>
+    <div class="content"></div>
+    <div class="shop-text">تسوق حسب الشركة</div>
+    <div class="image-container">
+        <div class="image-row">
+            <a href="index.html">
+                <img src="niche.jpg" alt="Niche Image" class="zoom-effect">
+            </a>
+            <a href="index.html">
+                <img src="Rice.png" alt="Rice Image" class="zoom-effect">
+            </a>
+        </div>
+        <div class="image-row">
+            <a href="index.html">
+                <img src="delmonte.jpg" alt="Delmonte Image" class="zoom-effect">
+            </a>
+            <a href="index.html">
+                <img src="organic.jpg" alt="Organic Image" class="zoom-effect">
+            </a>
+        </div>
+    </div>
+
+    <!-- Circles -->
+    <div class="circle" style="top: 20px; top: 0; width: 10px; height: 10px; background-color: rgba(0, 128, 0, 0.5); z-index: 998;"></div>
+    <div class="circle" style="top: 100px; left: 0; width: 20px; height: 20px; background-color: rgba(34, 139, 34, 0.5); z-index: 998;"></div>
+    <div class="circle" style="top: 200px; top: 0; width: 15px; height: 15px; background-color: rgba(50, 205, 50, 0.5); z-index: 998;"></div>
+    <div class="circle" style="top: 300px; right: 0; width: 25px; height: 25px; background-color: rgba(107, 142, 35, 0.5); z-index: 998;"></div>
+    <div class="circle" style="top: 400px; left: 0; width: 18px; height: 18px; background-color: rgba(85, 107, 47, 0.5); z-index: 998;"></div>
+    <div class="circle" style="top: 500px; right: 0; width: 12px; height: 12px; background-color: rgba(124, 252, 0, 0.5); z-index: 998;"></div>
+    <div class="circle" style="top: 600px; bottom: 0; width: 22px; height: 22px; background-color: rgba(144, 238, 144, 0.5); z-index: 998;"></div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const greenSquare = document.getElementById('greenSquare');
+            const greyPadding = document.getElementById('greyPadding');
+            if (window.scrollY > 0) {
+                greenSquare.style.width = '0px';
+                greenSquare.style.height = '0px';
+                greenSquare.style.opacity = '0';
+                setTimeout(() => {
+                    greyPadding.style.display = 'block';
+                    greyPadding.style.animation = 'rollIn 0.3s ease-out forwards';
+                }, 300); // Wait for green square to disappear
+            } else {
+                greyPadding.style.animation = 'rollOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    greyPadding.style.display = 'none';
+                    greenSquare.style.width = '320px';
+                    greenSquare.style.height = '150px';
+                    greenSquare.style.opacity = '30';
+                }, 300); // Delay before showing green square
+            }
+        });
+
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.style.display = (menuOverlay.style.display === 'none' || menuOverlay.style.display === '') ? 'flex' : 'none';
+        }
+
+        // Randomize circle movement on load
+        document.querySelectorAll('.circle').forEach(circle => {
+            circle.style.animation = `swim 10s infinite ease-in-out ${Math.random() * 5}s`;
+        });
+    </script>
+</body>
+</html>
+ 

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملفوف الصغير - شركة الخلف</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .main-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .main-image:hover {
+            transform: scale(1.1);
+        }
+        .product-info {
+            text-align: right;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease-in-out;
+        }
+        .product-info:hover {
+            background-color: #e0f7fa;
+        }
+        .product-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #277a72;
+        }
+        .product-info p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .product-info .price {
+            font-size: 1.8rem;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        .product-info button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .product-info button:hover {
+            background-color: #45a049;
+        }
+        .product-info .description {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 1rem;
+        }
+        .product-info .benefits {
+            font-size: 1rem;
+            color: #333;
+            margin-top: 1rem;
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            text-align: right;
+        }
+        .product-info .benefits li {
+            margin-bottom: 0.7rem;
+        }
+        .product-info .cta {
+            font-size: 1.2rem;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 1.5rem;
+        }
+        .home-link {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            font-size: 1rem;
+            color: #00796b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-link:hover {
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="home-link">&larr; العودة إلى الصفحة الرئيسية</a>
+    </header>
+    <main class="container">
+        <div class="product-info">
+            <h1>الملفوف الصغير الطازج</h1>
+            <p>طازج ومغذي، غني بالألياف والفيتامينات، مثالي لوصفاتك الصحية.</p>
+            <p class="price">10 ريال سعودي</p>
+            <button>إضافة إلى السلة</button>
+            <p class="description">الملفوف الصغير مليء بالفوائد الغذائية، فهو يحتوي على نسبة عالية من الألياف والفيتامينات مثل فيتامين C و K، مما يدعم الجهاز المناعي ويحسن الهضم.</p>
+            <ul class="benefits">
+                <li>يعزز صحة الجهاز الهضمي</li>
+                <li>مفيد لصحة القلب</li>
+                <li>يحتوي على مضادات الأكسدة القوية</li>
+                <li>يدعم نظام المناعة</li>
+            </ul>
+            <p class="cta">احصل على الملفوف الصغير الطازج الآن واستمتع بفوائده الصحية!</p>
+        </div>
+        <img src="baby_cabbage.jpg" alt="الملفوف الصغير الطازج" class="main-image">
+    </main>
+</body>
+</html>

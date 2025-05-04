@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Alkhalaf</title>
+    <style>
+        body {
+            background-color: #ebf5eb; /* Light green shade */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #322a47; /* Dark purple for text */
+        }
+
+        /* Fixed Header */
+        .permanent-padding {
+            background-color: #bde6c0;
+            height: 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1001;
+        }
+
+        .header {
+            background-color: #bde6c0;
+            padding: 10px;
+            width: 100%;
+            height: 60px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .home-link {
+            margin-right: 30px;
+            font-size: 0.9em;
+        }
+
+        .header .home-link a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .header .cart-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #322a47;
+        }
+
+        /* Cart Icon in Header 
+        .cart-icon {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: visible;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        .cart-icon::before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 4px;
+            width: 22px;
+            height: 12px;
+            border: 2px solid #322a47;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+        }
+        .cart-icon::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 16.2px;
+            width: 12px;
+            height: 15px;
+            border: 2px solid #322a47;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 2px 0 0;
+            transform: rotate(1deg);
+        }
+        .cart-icon .basket-line1 {
+            position: absolute;
+            top: 12px;
+            left: 7px;
+            width: 18px;
+            height: 1px;
+            background-color: #322a47;
+        }
+        .cart-icon .basket-line2 {
+            position: absolute;
+            top: 16px;
+            left: 7px;
+            width: 18px;
+            height: 1px;
+            background-color: #322a47;
+        }
+        .cart-icon .wheel1 {
+            position: absolute;
+            top: 20px;
+            left: 7px;
+            width: 5px;
+            height: 5px;
+            background-color: #322a47;
+            border-radius: 50%;
+        }
+        .cart-icon .wheel2 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 5px;
+            height: 5px;
+            background-color: #322a47;
+            border-radius: 50%;
+        }*/
+
+        /* Main Content */
+        .cart-content {
+            margin-top: 100px; /* Space for fixed header */
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cart-items {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #bde6c0;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-details h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .item-details p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .item-quantity button {
+            background-color: #82ec82;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #322a47;
+        }
+        .item-quantity button:hover {
+            background-color: #6bd76b;
+        }
+
+        .item-price {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-left: 20px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4444;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        .remove-item:hover {
+            color: #cc0000;
+        }
+
+        /* Total Section */
+        .cart-total {
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-total p {
+            margin: 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .checkout-btn {
+            background-color: #82ec82;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            color: #322a47;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-btn:hover {
+            background-color: #6bd76b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cart-item img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .item-quantity {
+                justify-content: center;
+                margin: 10px 0;
+            }
+            .item-price, .remove-item {
+                margin-left: 0;
+            }
+            .cart-total {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="permanent-padding"></div>
+    <div class="header">
+        <a href="index.html" class="cart-icon">
+            <span class="basket-line1"></span>
+            <span class="basket-line2"></span>
+            <span class="wheel1"></span>
+            <span class="wheel2"></span>
+        </a>
+        <span class="cart-title">Your Cart</span>
+        <div class="home-link">
+            <a href="index.html">← العودة الى المنزل</a>
+        </div>
+    </div>
+
+    <div class="cart-content">
+        <div class="cart-items">
+            <!-- Example Cart Item -->
+            <div class="cart-item">
+                <img src="niche.jpg" alt="Niche Product">
+                <div class="item-details">
+                    <h3>Organic Niche Fruit</h3>
+                    <p>Freshly picked seasonal fruit</p>
+                    <div class="item-quantity">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">2</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <span class="item-price">$10.00</span>
+                <button class="remove-item" onclick="removeItem(this)">✕</button>
+            </div>
+            <!-- Another Example Cart Item -->
+            <div class="cart-item">
+                <img src="Rice.png" alt="Rice Product">
+                <div class="item-details">
+                    <h3>Premium Rice</h3>
+                    <p>High-quality basmati rice</p>
+                    <div class="item-quantity">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">1</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <span class="item-price">$5.00</span>
+                <button class="remove-item" onclick="removeItem(this)">✕</button>
+            </div>
+        </div>
+
+        <div class="cart-total">
+            <p>Total: <span id="total-price">$15.00</span></p>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        function updateQuantity(button, change) {
+            const quantitySpan = button.parentElement.querySelector('.quantity');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(1, quantity + change); // Prevent quantity from going below 1
+            quantitySpan.textContent = quantity;
+            updateTotal();
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const items = document.querySelectorAll('.cart-item');
+            let total = 0;
+            items.forEach(item => {
+                const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                total += price * quantity;
+            });
+            document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function checkout() {
+            alert('Proceeding to checkout! (This is a placeholder action)');
+            // Add your checkout logic here (e.g., redirect to payment page)
+        }
+    </script>
+</body>
+</html>
